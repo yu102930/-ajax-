@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script>
+    $(function (){
+     console.log("hi");
+
+     CallAPI("台中市南屯區嶺東路1號");
+ });
+
+    function CallAPI(addr){
+        console.log("call ..." + addr);
+
+         var url = "http://zip5.5432.tw/zip5json.py?adrs=" +addr;
+        console.log(url); //for debug
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: "get",
+            //data:data,
+            //Type: Function(Anything data, String textStatus, jqXHR jqXHR)
+            success: function(data, textStatus, jqXHR) {
+                console.log(JSON.stringify(data));
+                console.log(data.zipcode6);
+            },
+            //Type: Function(jqXHR jqXHR, String textStatus, String errorThrown)
+            error: function(jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+
+        console.log("call ...END")
+    }
+
+</script>
+
+</body>
+</html>
